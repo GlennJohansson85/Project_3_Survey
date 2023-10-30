@@ -23,3 +23,18 @@ def authorize_gspread():
     except Exception as e:
         print("Error authorizing gspread:", e)
         return None
+    
+def open_google_sheet(client, sheet_title):
+    """
+    Open a Google Sheet by title.
+    Args:
+        client: Authorizede gspread client.
+        sheet_title: Title of the Google Sheet.
+    Returns:
+        gspread Sheet or None if the sheet is not found.
+    """
+    try:
+        return client.open(sheet_title)
+    except gspread.exceptions.SpreadsheetNotFound:
+        print(f"Spreadsheet '{sheet_title}' not found.")
+        return None
