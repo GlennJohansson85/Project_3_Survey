@@ -38,3 +38,17 @@ def open_google_sheet(client, sheet_title):
     except gspread.exceptions.SpreadsheetNotFound:
         print(f"Spreadsheet '{sheet_title}' not found.")
         return None
+
+def load_valid_location():
+    """
+    Load valid locations from an XLSX file.
+    Returns:
+        List of valid Locations (Cities in USA).
+    """
+    valid_locations = []
+    try:
+        df = pd.read_excel("uscities.xlsx")
+        valid_locations = df["location"].str.upper().tolist()
+    except Exception as e:
+        print(f"Error loading valid locations from XLSX file: {e}")
+    return valid_locations
