@@ -52,3 +52,96 @@ def load_valid_location():
     except Exception as e:
         print(f"Error loading valid locations from XLSX file: {e}")
     return valid_locations
+
+def calculate_summary(user_data):
+    """
+    Calculate summary statistics from user data.
+    Args:
+        user_data: List of user data dictionaries.
+    Returns:
+        A dictionary with summary statistics.
+    """
+    # Initialize variables for data aggregation.
+    num_males = 0
+    num_females = 0
+    
+    # Total age and count for males and females.
+    total_age_males = 0
+    valid_age_count_males = 0
+    total_age_females = 0
+    valid_age_count_females = 0
+    
+    # Lists to store occupations for males and females.
+    occupation_males = []
+    occupation_females = []
+    
+    # Variabls to track the highest paid occupatiion and income for males and females.
+    highest_paid_occupation_males = ""
+    highest_paid_income_males = 0
+    highest_paid_occupation_females = ""
+    highest_paid_income_females = 0
+    highest_paid_location_male = ""
+    highest_paid_location_female = ""
+    
+    # Total income and count for males and females
+    total_income_males = 0
+    valid_income_count_males = 0
+    total_income_females = 0
+    valid_income_count_females = 0
+    
+    # Iterate through user data to aggregate statistics
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
