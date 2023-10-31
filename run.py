@@ -287,6 +287,25 @@ def get_valid_LOCATION():
         else:
             print("Where in the US is your work located? In which city?")
             
+def get_user_info(valid_locations):
+    """
+    Get user information from user.
+    Args:
+        valid_locations: List of valid locations.
+    Returns:
+        A summary containing user information. 
+    """
+    user_info = {
+        "NAME": get_valid_NAME(),
+        "AGE": get_valid_AGE(),
+        "GENDER": get_valid_GENDER(),
+        "OCCUPATION": get_valid_OCCUPATION(),
+        "INCOME": get_Valid_INCOME(),
+        "LOCATION": get_valid_LOCATION(valid_locations),
+    }
+    
+    return user_info
+    
 
     
     
