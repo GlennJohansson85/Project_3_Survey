@@ -271,7 +271,23 @@ def get_valid_INCOME():
         else:
             print("Please enter a valid income with 5 or 6 digits.")
             
+def get_valid_LOCATION():
+    """
+    Get a valid location input from user.
+    Args:
+        valid_locations: List of valid locations from "uscities.xlsx".
+    Retruns:
+        Valid user location: 
+    (Ensures case-insensitive matching for locations by converting user input and valid locations to uppercase.)
+    """
+    while True: 
+        location = input("In which city do you work:").strip().upper()
+        if location in valid_locations:
+            return location
+        else:
+            print("Where in the US is your work located? In which city?")
             
+
     
     
     
