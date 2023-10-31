@@ -205,9 +205,9 @@ def display_insights(summary):
         
     print("--------------------------------------")
     
-def get_valid_Name():   
+def get_valid_NAME():   
     """
-    Get a valid name input from the user.
+    Get a valid name input from user.
     Returns:
         Valid user name.
     """
@@ -219,7 +219,18 @@ def get_valid_Name():
         else:
             print("Please use only letter and ensure the name is at lease 2 characters long.")
     
-    
+def get_valid_AGE():
+    """
+    Get a valid age input from user.
+    Returns:
+        Valid user age.
+    """
+    while True:
+        age = input("Your age (between 14 and 85):")
+        if age.isdigit() and 14 <= int(age) <= 85:
+            return int(age)
+        else:
+            print("Please enter a valid age between 14 and 85.")
     
     
     
