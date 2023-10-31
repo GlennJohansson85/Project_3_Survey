@@ -306,9 +306,60 @@ def get_user_info(valid_locations):
     
     return user_info
     
-
+def show_summary_and_confirm(user_info):
+    """
+    Display user information, confirm = update "survey"(Google Sheet)
+    Args:
+        user_info: Summary containing user input. 
+    Returns: 
+        True if user confirms, False outherwise.
+    """
+    max_key_length = max(len(key) for key in user_info.keys())
+    max_value_length = max(len(str(value)) for value in user_info.values())
     
+    # Display user input summary
+    print("-" * (max_key_length + max_value_length + 20))
+    print("------------- SUMMARY --------------")
     
+    for  key, value in user_info.items():
+        if key == "GENDER":
+            formatted_key = key.upper()
+            formatted_value = value.upper()
+        elif key == "INCOME":
+            formatted_key = key.upper()
+            # Format income as currency
+            formatted_value = f"${value:,.0f}"
+        else:
+            formatted_key = key.upper()
+            formatted_value = value
+            
+        print("{formatted_key.ljust(max_key_length).upper()} : {formatted_value}")
+        
+    print("-" * (max_key_length + max_value_length + 20))
+    
+    While True:
+        confirmation = input("Are you satisfied with your answers? (yes/no):").strip().lower()
+        if confirmation == "yes":
+            try:
+                client = authorize_gspread()
+                sheet_title = "survey"
+                sheet = open_google_sheet(client, sheet_title)
+                worksheet = sheet.get_worksheet(0)
+                
+                user_values = list(user_info.values())
+                worksheet.insert_row(user_values, 2)
+                
+                print(f"User input added to the survey '{sheet_title}'.")
+            except gspread.exceptions.WorksheetNotFound as e:
+                print("Worksheet not found:", e)
+            except Exception as e:
+                print("An error occurred while updating Google sheet", e)
+            break
+        elif confirmation == "no":
+            print("Let´s start over.")
+            break
+        else:
+            print("Invalid input. Please enter 'yes' or 'no'.")
     
     
     
