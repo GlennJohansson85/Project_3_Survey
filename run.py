@@ -239,7 +239,7 @@ def get_valid_GENDER():
         Valid  user gender.
     """
     while True:
-        gender = input("Your gender (male/female):").strip().lower()
+        gender = input("Your gender (male/female):").strip().upper()
         if gender in ["male", "female"]:
             return gender
         else:
