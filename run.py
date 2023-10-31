@@ -83,21 +83,104 @@ def calculate_summary(user_data):
     highest_paid_location_male = ""
     highest_paid_location_female = ""
     
-    # Total income and count for males and females
+    # Total income and count for males and females.
     total_income_males = 0
     valid_income_count_males = 0
     total_income_females = 0
     valid_income_count_females = 0
     
-    # Iterate through user data to aggregate statistics
+    # Iterate through user data to aggregate statistics.
+    for user in user_data:
+        gender = user.get("GENDER", "").strip().lower()
+        income_str = user.get("INCOME")
+        location = user.get("LOCATION", "").strip().upper()
+        
+        if gender == "male":
+            num_males += 1
+            age_str = user.get("AGE")
+            occupation = user.get("OCCUPATION", "").strip()
+            
+            if age_str:
+                try:
+                    age = int(age_str)
+                    total_age_males += age
+                    valid_age_count_males += 1
+                except ValueErrir:
+                    pass
+                
+                if occupation:
+                    occupation_males.append(occupation)
+                    
+                if income_str:
+                    try:
+                        income = int(income_str)
+                        total_income_males += income
+                        valid_income_count_males += 1
+                        if income > highest_paid_income_males:
+                            highest_paid_income_males = income
+                            highest_paid_occupation_males = occupation
+                            highest_paid_location_male = location
+                    except ValueError:
+                        pass
+            elif gender == "female":
+                num_females += 1
+                age_str = user.get("AGE")
+                occupation = user.get("OCCUPATION", "").strip()
+
+                if age_str:
+                    try:
+                        age = int(age_str)
+                        total_age_females += age
+                        valid_age_count_females += 1
+                    except ValueError:
+                        pass
+                    
+                if occupation:
+                    occupation_females.append(occupation)
+                    
+                if income_str:
+                    try:
+                        income = int(income_str)
+                        total_income_females += income
+                        valid_income_count_females += 1
+                        if income > highest_paid_income_females:
+                            highest_paid_income_females = income
+                            highest_paid_occupation_females = occupation
+                            highest_paid_location_female = location
+                    except ValueError:
+                        pass
+                    
+    # Calculate average age for males and females
+    average_age_males = int(total_age_males / valid_age_count_males) if valid_age_count_males > 0 else 0
+    average_age_females = int(total_age_females / valid_age_count_males) if valid_age_count_females > 0 else 0
     
+    # Calculate average income for males and females
+    average_income_males = int(total_income_males / valid_income_count_males) if valid_income_count_males > 0 else 0
+    average_income_females = int(total_income_females / valid_income_count_females) if valid_income_count_females > 0 else 0
     
+    # Determine the most common occupations for males and females
+    most_common_occupation_males = (
+        Counter(occupation_males).most_common(1)[0][0].upper() if occupation_males else ""        
+    )
+    most_common_occupation_females = (
+        Counter(occupation_females).most_common(1)[0][0].upper() if occupation_females else ""
+    )
     
+    # Create a summary dictionary with statistics
+    summary = {
+        "NUMBER OF MALES": num_males,
+        "NUMBER OF FEMALES": num_females,
+        "AVERAGE AGE FOR MALES": average_age_males,
+        "AVERAGE AGE FOR FEMALES": average_age_females,
+        "AVERAGE INCOME FOR MALES": average_income_males,
+        "AVERAGE INCOME FOR FEMALES": average_income_females,
+        "MOST COMMON OCCUPATION FOR MALES": most_common_occupation_males
+        "MOST COMMON OCCUPATION FOR FEMALES": most_common_occupation_females,
+        "HIGHEST PAID OCCUPATION FOR MALES": f"{highest_paid_occupation_males} ({highest_paid_location_males})",
+        "HIGHEST PAID OCCUPATION FOR FEMALES": f"{highest_paid_occupation_females} ({highest_paid_location_females})",    
+    }
     
-    
-    
-    
-    
+    return summary
     
     
     
