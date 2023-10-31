@@ -9,7 +9,7 @@ SCOPE = [
   "https://www.googleapis.com/auth/drive",
 ]
 
-CREDS_FILE = "creds.json"
+CREDS_PATH = "creds.json"
 
 def authorize_gspread():
     """
@@ -320,7 +320,7 @@ def show_summary_and_confirm(user_info):
     
     # Display user input summary
     print("-" * (max_key_length + max_value_length + 20))
-    print("------------- SUMMARY --------------")
+    print("-------- SUMMARY --------")
     
     for key, value in user_info.items():
         if key == "GENDER":
@@ -339,10 +339,10 @@ def show_summary_and_confirm(user_info):
     print("-" * (max_key_length + max_value_length + 20))
     
     while True:
-        confirmation = input("Are you satisfied with your answers? (yes/no):").strip().lower()
+        confirmation = input("Are you satisfied with your answers? (yes/no): ").strip().lower()
         if confirmation == "yes":
             try:
-                participant = authorize_gspread()
+                client = authorize_gspread()
                 sheet_title = "survey"
                 sheet = open_google_sheet(client, sheet_title)
                 worksheet = sheet.get_worksheet(0)
@@ -375,11 +375,11 @@ def implement_data():
             if show_summary_and_confirm(user_info):
                 user_data.append(user_info)
         elif choice == "2":
-            participant = authorize_gspread()
-            if participant:
+            client = authorize_gspread()
+            if client:
                 sheet_title = "survey"
                 try:
-                    sheet = open_google_sheet(participant, sheet_title)
+                    sheet = open_google_sheet(client, sheet_title)
                     worksheet = sheet.get_worksheet(0)
                 except gspread.exceptions.WorksheetNotFound as e:
                     print("Worksheet not found:", e)
@@ -399,9 +399,9 @@ def implement_data():
     
     if user_data:
         try:
-            participant = authorize_gspread()
+            client = authorize_gspread()
             sheet_title = "survey"
-            sheet = open_google_sheet(participant, sheet_title)
+            sheet = open_google_sheet(client, sheet_title)
             worksheet = sheet.get_worksheet(0)
             
             for i, user in enumerate(user_data, start=2):
