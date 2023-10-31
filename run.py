@@ -153,7 +153,7 @@ def calculate_summary(user_data):
                     
     # Calculate average age for males and females
     average_age_males = int(total_age_males / valid_age_count_males) if valid_age_count_males > 0 else 0
-    average_age_females = int(total_age_females / valid_age_count_males) if valid_age_count_females > 0 else 0
+    average_age_females = int(total_age_females / valid_age_count_females) if valid_age_count_females > 0 else 0
     
     # Calculate average income for males and females
     average_income_males = int(total_income_males / valid_income_count_males) if valid_income_count_males > 0 else 0
@@ -177,8 +177,8 @@ def calculate_summary(user_data):
         "AVERAGE INCOME FOR FEMALES": average_income_females,
         "MOST COMMON OCCUPATION FOR MALES": most_common_occupation_males,
         "MOST COMMON OCCUPATION FOR FEMALES": most_common_occupation_females,
-        "HIGHEST PAID OCCUPATION FOR MALES": f"{highest_paid_occupation_males} ({highest_paid_location_males})",
-        "HIGHEST PAID OCCUPATION FOR FEMALES": f"{highest_paid_occupation_females} ({highest_paid_location_females})",    
+        "HIGHEST PAID OCCUPATION FOR MALES": f"{highest_paid_occupation_males} ({highest_paid_location_male})",
+        "HIGHEST PAID OCCUPATION FOR FEMALES": f"{highest_paid_occupation_females} ({highest_paid_location_female})",    
     }
     
     return summary
@@ -199,9 +199,9 @@ def display_insights(summary):
         formatted_key = f"{key.ljust(max_key_length)}"
         if key.startswith("AVERAGE INCOME"):
             # Remove ".00" and add "$" and ","
-            formatted_value = f"{values:,.0f}"
+            formatted_value = f"${value:,.0f}"
         else:
-            formatted_value = f"{value.upper() if isinstance(value, str) else value}"
+            formatted_value = f"${value.upper() if isinstance(value, str) else value}"
         print(f"{formatted_key} : {formatted_value}")
         
     print("--------------------------------------")
