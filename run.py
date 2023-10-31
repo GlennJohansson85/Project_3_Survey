@@ -9,7 +9,7 @@ SCOPE = [
   "https://www.googleapis.com/auth/drive",
 ]
 
-CREDS_PATH = "creds.json"
+CREDS_FILE = "creds.json"
 
 def authorize_gspread():
     """
@@ -61,6 +61,7 @@ def calculate_summary(user_data):
     Returns:
         A dictionary with summary statistics.
     """
+    
     # Initialize variables for data aggregation.
     num_males = 0
     num_females = 0
@@ -75,7 +76,7 @@ def calculate_summary(user_data):
     occupation_males = []
     occupation_females = []
     
-    # Variabls to track the highest paid occupatiion and income for males and females.
+    # Variabls to track the highest paid occupation and income for males and females.
     highest_paid_occupation_males = ""
     highest_paid_income_males = 0
     highest_paid_occupation_females = ""
@@ -105,7 +106,7 @@ def calculate_summary(user_data):
                     age = int(age_str)
                     total_age_males += age
                     valid_age_count_males += 1
-                except ValueErrir:
+                except ValueError:
                     pass
                 
                 if occupation:
@@ -174,7 +175,7 @@ def calculate_summary(user_data):
         "AVERAGE AGE FOR FEMALES": average_age_females,
         "AVERAGE INCOME FOR MALES": average_income_males,
         "AVERAGE INCOME FOR FEMALES": average_income_females,
-        "MOST COMMON OCCUPATION FOR MALES": most_common_occupation_males
+        "MOST COMMON OCCUPATION FOR MALES": most_common_occupation_males,
         "MOST COMMON OCCUPATION FOR FEMALES": most_common_occupation_females,
         "HIGHEST PAID OCCUPATION FOR MALES": f"{highest_paid_occupation_males} ({highest_paid_location_males})",
         "HIGHEST PAID OCCUPATION FOR FEMALES": f"{highest_paid_occupation_females} ({highest_paid_location_females})",    
@@ -239,11 +240,11 @@ def get_valid_GENDER():
         Valid user gender.
     """
     while True:
-        gender = input("Your gender (male/female):").strip().upper()
+        gender = input("Your gender (male/female):").strip().lower()
         if gender in ["male", "female"]:
             return gender
         else:
-            print("Pleaser enter either 'male' or 'female.")
+            print("Pleaser enter either 'male' or 'female'.")
             
 def get_valid_OCCUPATION():
     """
@@ -337,7 +338,7 @@ def show_summary_and_confirm(user_info):
         
     print("-" * (max_key_length + max_value_length + 20))
     
-    While True:
+    while True:
         confirmation = input("Are you satisfied with your answers? (yes/no):").strip().lower()
         if confirmation == "yes":
             try:
@@ -362,7 +363,7 @@ def show_summary_and_confirm(user_info):
             print("Invalid input. Please enter 'yes' or 'no'.")
     
 def implement_data():
-    valid_locations = load_valid_locations()
+    valid_locations = load_valid_location()
     user_data = []
     """
     Main function to interact with users and updateGoogle Sheet. 
