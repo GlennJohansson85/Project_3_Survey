@@ -186,7 +186,7 @@ def display_insights(summary):
     """
     Display summary statistics in a user-friendly format.
     Args:
-        summary: Dictionary with summary statistics
+        summary: Dictionary with summary statistics.
     """
     max_key_length = max(len(key) for key in summary.keys())
     max_value_length = max(len(str(value)) for value in summary.values())
@@ -205,7 +205,19 @@ def display_insights(summary):
         
     print("--------------------------------------")
     
-    
+def get_valid_Name():   
+    """
+    Get a valid name input from the user.
+    Returns:
+        Valid user name.
+    """
+    while True:
+        name = input("Your name:")
+        # Convert name to uppercase ensuring consistency and make comparisons case-insensitive.
+        if len(name) >= 2 and not any(char.isdigit() for char in name):
+            return name.upper()
+        else:
+            print("Please use only letter and ensure the name is at lease 2 characters long.")
     
     
     
