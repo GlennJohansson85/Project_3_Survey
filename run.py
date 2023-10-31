@@ -341,7 +341,7 @@ def show_summary_and_confirm(user_info):
         confirmation = input("Are you satisfied with your answers? (yes/no):").strip().lower()
         if confirmation == "yes":
             try:
-                client = authorize_gspread()
+                participant = authorize_gspread()
                 sheet_title = "survey"
                 sheet = open_google_sheet(client, sheet_title)
                 worksheet = sheet.get_worksheet(0)
@@ -361,13 +361,60 @@ def show_summary_and_confirm(user_info):
         else:
             print("Invalid input. Please enter 'yes' or 'no'.")
     
+def implement_data():
+    valid_locations = load_valid_locations()
+    user_data = []
+    """
+    Main function to interact with users and updateGoogle Sheet. 
+    """
+    while True:
+        choice = input("Press 1 = New Participant, Press 2 = Analyst, Press 3 = Exit:").strip()
+        if choice == "1":
+            user_info = get_user_info(valid_locations)
+            if show_summary_and_confirm(user_info):
+                user_data.append(user_info)
+        elif choice == "2":
+            participant = authorize_gspread()
+            if participant:
+                sheet_title = "survey"
+                try:
+                    sheet = open_google_sheet(participant, sheet_title)
+                    worksheet = sheet.get_worksheet(0)
+                except gspread.exceptions.WorksheetNotFound as e:
+                    print("Worksheet not found:", e)
+                    continue
+                    
+                records = worksheet.get_all_records()
+                if records:
+                    summary = calculate_summary(records)
+                    display_insights(summary)
+                else:
+                    print("No data in Google Sheet yet.")
+        elif choice == "3":
+            print("Exiting the program.")
+            break
+        else:
+            print("Invalid input. Please enter 1, 2 or 3.")
     
-    
-    
-    
-    
-    
-    
+    if user_data:
+        try:
+            participant = authorize_gspread()
+            sheet_title = "survey"
+            sheet = open_google_sheet(participant, sheet_title)
+            worksheet = sheet.get_worksheet(0)
+            
+            for i, user in enumerate(user_data, start=2):
+                user_values = list(user.values())
+                worksheeet.insert_row(user_values, i)
+                
+            print(f"Survey data added to Google Sheet '{sheet_title}'.")
+        except gspread.exceptions.WorksheetNotFound as e:
+            print("Worksheet not found:", e)
+        except Exception as e:
+            print("An error occured while updating Google Sheet:", e)
+            
+if __name__ == "__main__":
+    implement_data()
     
     
     
