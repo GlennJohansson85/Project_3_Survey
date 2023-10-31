@@ -419,34 +419,3 @@ def implement_data():
             
 if __name__ == "__main__":
     implement_data()
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
