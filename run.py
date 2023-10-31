@@ -182,7 +182,28 @@ def calculate_summary(user_data):
     
     return summary
     
+def display_insights(summary):
+    """
+    Display summary statistics in a user-friendly format.
+    Args:
+        summary: Dictionary with summary statistics
+    """
+    max_key_length = max(len(key) for key in summary.keys())
+    max_value_length = max(len(str(value)) for value in summary.values())
+    # Create a line of the same width
+    line = '-' * (max_key_length + max_value_length + 20)
     
+    print("-------------- INSIGHTS --------------")
+    for key, value in summary.items():
+        formatted_key = f"{key.ljust(max_key_length)}"
+        if key.startswith("AVERAGE INCOME"):
+            # Remove ".00" and add "$" and ","
+            formatted_value = f"{values:,.0f}"
+        else:
+            formatted_value = f"{value.upper() if isinstance(value, str) else value}"
+        print(f"{formatted_key} : {formatted_value}")
+        
+    print("--------------------------------------")
     
     
     
