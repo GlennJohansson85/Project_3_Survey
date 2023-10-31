@@ -236,7 +236,7 @@ def get_valid_GENDER():
     """
     Get a valid gender input from user.
     Returns:
-        Valid  user gender.
+        Valid user gender.
     """
     while True:
         gender = input("Your gender (male/female):").strip().upper()
@@ -244,6 +244,19 @@ def get_valid_GENDER():
             return gender
         else:
             print("Pleaser enter either 'male' or 'female.")
+            
+def get_valid_OCCUPATION():
+    """
+    Get a valid occupation input from user.
+    Returns:
+        Valid user occupation.
+    """
+    while True:
+        occupation = input("Your occupation:")
+        if len(occupation) >= 2 and not any(char.isdigit() for char in occupation):
+            return occupation.upper()
+        else:
+            print("Please use only letters and ensure the name of the occupation is at least 2 characters long.")
             
 
     
