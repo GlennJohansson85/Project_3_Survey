@@ -213,7 +213,7 @@ def get_valid_NAME():
         Valid user name.
     """
     while True:
-        name = input("Your name:")
+        name = input("Your name: ")
         # Convert name to uppercase ensuring consistency and make comparisons case-insensitive.
         if len(name) >= 2 and not any(char.isdigit() for char in name):
             return name.upper()
@@ -227,7 +227,7 @@ def get_valid_AGE():
         Valid user age.
     """
     while True:
-        age = input("Your age (between 14 and 85):")
+        age = input("Your age (between 14 and 85): ")
         if age.isdigit() and 14 <= int(age) <= 85:
             return int(age)
         else:
@@ -240,7 +240,7 @@ def get_valid_GENDER():
         Valid user gender.
     """
     while True:
-        gender = input("Your gender (male/female):").strip().lower()
+        gender = input("Your gender (male/female): ").strip().lower()
         if gender in ["male", "female"]:
             return gender
         else:
@@ -253,7 +253,7 @@ def get_valid_OCCUPATION():
         Valid user occupation.
     """
     while True:
-        occupation = input("Your occupation:")
+        occupation = input("Your occupation: ")
         if len(occupation) >= 2 and not any(char.isdigit() for char in occupation):
             return occupation.upper()
         else:
@@ -266,13 +266,13 @@ def get_valid_INCOME():
         Valid user income.
     """
     while True:
-        income = input("Your yearly income($, 5 or 6 digits):")
+        income = input("Your yearly income (5 or 6 digits): ")
         if income.isdigit() and (len(income) == 5 or len(income) ==6):
             return int(income)
         else:
             print("Please enter a valid income with 5 or 6 digits.")
             
-def get_valid_LOCATION():
+def get_valid_LOCATION(valid_locations):
     """
     Get a valid location input from user.
     Args:
@@ -282,7 +282,7 @@ def get_valid_LOCATION():
     (Ensures case-insensitive matching for locations by converting user input and valid locations to uppercase.)
     """
     while True: 
-        location = input("In which city do you work:").strip().upper()
+        location = input("In which city do you work: ").strip().upper()
         if location in valid_locations:
             return location
         else:
@@ -301,7 +301,7 @@ def get_user_info(valid_locations):
         "AGE": get_valid_AGE(),
         "GENDER": get_valid_GENDER(),
         "OCCUPATION": get_valid_OCCUPATION(),
-        "INCOME": get_Valid_INCOME(),
+        "INCOME": get_valid_INCOME(),
         "LOCATION": get_valid_LOCATION(valid_locations),
     }
     
@@ -322,7 +322,7 @@ def show_summary_and_confirm(user_info):
     print("-" * (max_key_length + max_value_length + 20))
     print("------------- SUMMARY --------------")
     
-    for  key, value in user_info.items():
+    for key, value in user_info.items():
         if key == "GENDER":
             formatted_key = key.upper()
             formatted_value = value.upper()
@@ -334,7 +334,7 @@ def show_summary_and_confirm(user_info):
             formatted_key = key.upper()
             formatted_value = value
             
-        print("{formatted_key.ljust(max_key_length).upper()} : {formatted_value}")
+        print(f"{formatted_key.ljust(max_key_length).upper()} : {formatted_value}")
         
     print("-" * (max_key_length + max_value_length + 20))
     
@@ -414,7 +414,7 @@ def implement_data():
         except Exception as e:
             print("An error occured while updating Google Sheet:", e)
             
-if __name__ == "__main__":
+if __name__=="__main__":
     implement_data()
     
     
