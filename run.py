@@ -231,6 +231,21 @@ def get_valid_AGE():
             return int(age)
         else:
             print("Please enter a valid age between 14 and 85.")
+            
+def get_valid_GENDER():
+    """
+    Get a valid gender input from user.
+    Returns:
+        Valid  user gender.
+    """
+    while True:
+        gender = input("Your gender (male/female):").strip().lower()
+        if gender in ["male", "female"]:
+            return gender
+        else:
+            print("Pleaser enter either 'male' or 'female.")
+            
+
     
     
     
