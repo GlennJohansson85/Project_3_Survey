@@ -258,7 +258,20 @@ def get_valid_OCCUPATION():
         else:
             print("Please use only letters and ensure the name of the occupation is at least 2 characters long.")
             
-
+def get_valid_INCOME():
+    """
+    Get a valid income input from user.
+    Returns:
+        Valid user income.
+    """
+    while True:
+        income = input("Your yearly income($, 5 or 6 digits):")
+        if income.isdigit() and (len(income) == 5 or len(income) ==6):
+            return int(income)
+        else:
+            print("Please enter a valid income with 5 or 6 digits.")
+            
+            
     
     
     
