@@ -1,8 +1,10 @@
+# Imported libraris
 import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
 from collections import Counter
 
+# Google Sheets API scope and credentials path
 SCOPE = [
   "https://www.googleapis.com/auth/spreadsheets",
   "https://www.googleapis.com/auth/drive.file",
@@ -28,7 +30,7 @@ def open_google_sheet(client, sheet_title):
     """
     Open a Google Sheet by title.
     Args:
-        client: Authorizede gspread client.
+        client: Authorize gspread client.
         sheet_title: Title of the Google Sheet.
     Returns:
         gspread Sheet or None if the sheet is not found.
@@ -39,7 +41,7 @@ def open_google_sheet(client, sheet_title):
         print(f"Spreadsheet '{sheet_title}' not found.")
         return None
 
-def load_valid_location():
+def load_valid_locations():
     """
     Load valid locations from an XLSX file.
     Returns:
@@ -123,7 +125,8 @@ def calculate_summary(user_data):
                             highest_paid_location_male = location
                     except ValueError:
                         pass
-            elif gender == "female":
+                    
+        elif gender == "female":
                 num_females += 1
                 age_str = user.get("AGE")
                 occupation = user.get("OCCUPATION", "").strip()
@@ -201,7 +204,7 @@ def display_insights(summary):
             # Remove ".00" and add "$" and ","
             formatted_value = f"${value:,.0f}"
         else:
-            formatted_value = f"${value.upper() if isinstance(value, str) else value}"
+            formatted_value = f"{value.upper() if isinstance(value, str) else value}"
         print(f"{formatted_key} : {formatted_value}")
         
     print("--------------------------------------")
@@ -277,7 +280,7 @@ def get_valid_LOCATION(valid_locations):
     Get a valid location input from user.
     Args:
         valid_locations: List of valid locations from "uscities.xlsx".
-    Retruns:
+    Returns:
         Valid user location: 
     (Ensures case-insensitive matching for locations by converting user input and valid locations to uppercase.)
     """
@@ -363,18 +366,18 @@ def show_summary_and_confirm(user_info):
             print("Invalid input. Please enter 'yes' or 'no'.")
     
 def implement_data():
-    valid_locations = load_valid_location()
+    valid_locations = load_valid_locations()
     user_data = []
     """
     Main function to interact with users and updateGoogle Sheet. 
     """
     while True:
         choice = input("Press 1 = New Participant, Press 2 = Analyst, Press 3 = Exit:").strip()
-        if choice == "1":
+        if choice == '1':
             user_info = get_user_info(valid_locations)
             if show_summary_and_confirm(user_info):
                 user_data.append(user_info)
-        elif choice == "2":
+        elif choice == '2':
             client = authorize_gspread()
             if client:
                 sheet_title = "survey"
@@ -391,7 +394,7 @@ def implement_data():
                     display_insights(summary)
                 else:
                     print("No data in Google Sheet yet.")
-        elif choice == "3":
+        elif choice == '3':
             print("Exiting the program.")
             break
         else:
@@ -406,7 +409,7 @@ def implement_data():
             
             for i, user in enumerate(user_data, start=2):
                 user_values = list(user.values())
-                worksheeet.insert_row(user_values, i)
+                worksheet.insert_row(user_values, i)
                 
             print(f"Survey data added to Google Sheet '{sheet_title}'.")
         except gspread.exceptions.WorksheetNotFound as e:
@@ -414,7 +417,7 @@ def implement_data():
         except Exception as e:
             print("An error occured while updating Google Sheet:", e)
             
-if __name__=="__main__":
+if __name__ == "__main__":
     implement_data()
     
     
