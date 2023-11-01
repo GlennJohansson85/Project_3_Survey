@@ -45,8 +45,9 @@ With a simple menu option, the analyst can instantly access insightful data anal
 ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/20bfe092-70da-4e76-bd9b-c68462555747)
 
 ### Testing
+* CI Python Linter
+  ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/f13e9cbc-6a30-4fcf-802e-b7bd057a09a4)
 
-DONT FORGET
 
 
 ### Credits
