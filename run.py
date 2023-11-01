@@ -371,6 +371,9 @@ def show_summary_and_confirm(user_info):
     max_key_length = max(len(key) for key in user_info.keys())
     max_value_length = max(len(str(value)) for value in user_info.values())
 
+    # Transform "male" or "female" to uppercase
+    user_info["GENDER"] = user_info["GENDER"].upper()
+
     # Display user input summary
     print("-" * (max_key_length + max_value_length + 20))
     print("-------- SUMMARY --------")
