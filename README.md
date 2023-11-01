@@ -21,7 +21,7 @@ The script collects the following information from participants:
 * Occupation: The participant´s occupation (validated for non-empty and non-numeric characters) and stored in uppercase format.
 * Income: The participant´s yearly income (validated for 5 or 6-digit numeric values).
 * Location: The participant´s work location is validated against a list of valid locations("uscities.xlsx") in a case-insensitive manner. The validated location is stored in a
-  uppercase format for consistency.
+  uppercase format for consistency.<br>
   ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/a360022b-aff0-415e-8d1f-bb0db6c4bb07)
 
 #### Participant Input Validation
