@@ -47,33 +47,22 @@ The intuitive user menu provides a hassle-free experience, allowing you to add n
 The script includes robust error handling to address exceptions that may occur during Google Sheets integration or data manipulation, ensuring a smooth and reliable user experience.
 After entering their data, participants are presented with a summary of their inputs and asked to confirm. This confirmation step helps avoid mistakes and ensures accurate data entry.
 
-## Prerequisites
-Before using the script, the following is needed:
-
-1. Google Sheets API Credentials: Create a `creds.json` file with the necessary credentials for the Google Sheets API. Make sure it has the required permissions to access and modify the target Google Sheet.
-
-2. Python Environment: Make sure you have Python installed on your system.
-
-3. Required Libraries: Install the necessary Python libraries using `pip install gspread pandas`.
-
-4. Valid Locations Data: Ensure that you have an XLSX file named `uscities.xlsx` containing a list of valid locations (cities in the USA) for location validation.
-
-## Usage
-
-1. Run the script by executing `python your_script_name.py`.
-
-2. You will be presented with the following options:
-   - Enter '1' to add a new participant.
-   - Enter '2' to perform data analysis.
-   - Enter '3' to exit the program.
-
-3. If you choose to add a new participant, you will be prompted to enter your name, age, gender, occupation, income, and location. The script will validate your inputs and ask for confirmation.
-
-4. If you choose to perform data analysis, the script will provide insights into the collected data, including gender distribution, average age, average income, most common occupation, and highest-paid occupation for both males and females.
-
-5. The script will update a Google Sheet named "survey" with the collected user data.
-
-6. You can exit the program at any time by choosing option '3'.
-
 ### Credits
- 
+
+#### Code Institute:
+* Comparative Programming Languages
+* Python Essentials
+* Love Sandwiches - Essentials Project
+* Slack Forum
+#### My Mentor
+* Brian Macharia
+#### Websites/Cloud Services/Forums
+* Google Cloud/Drive/Spreadsheet
+* Stack overflow
+* https://www.talent.com/salary ("uscites.xlsx")
+* https://www.fiverr.com
+* https://www.programiz.com
+* https://www.reddit.com
+* https://www.geeksforgeeks.org
+* https://learnpython.org
+* https://www.udemy.com
