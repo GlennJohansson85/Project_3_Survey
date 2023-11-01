@@ -1,19 +1,16 @@
 # p3-survey
 
-"This Python project serves a specific analytical purpose. It is built to systematically gather user-provided information and employ this data to conduct a comparative study of annual income between male and female individuals. The focus of this analysis narrows down to individuals sharing the same occupation and residing within the United States.
+This Python project is built to systematically gather user-provided information and employ the data to conduct a comparative study of annual income between male and female individuals. The focus of this analysis narrows down to individuals sharing the same occupation and residing within the United States.
+The participants partaking in the survey are fictional.
 
 Key Focus:
-1. Gender-Based Comparison: The heart of this project is a yearly income comparison between males and females. By collecting and analyzing user data, the script shows if there really are any differences. 
+1. Gender-Based Income Comparison: At the core of this project lies a analysis of yearly income disparities between males and females. Through the collection and examination of user data, the script presents the differences between males and females income within the same occupation or locatation.  
 
 2. Quantitative Insights: Dive deep into the data with key quantitative metrics, such as the number of male and female participants, the average age for both groups, and the average income they earn.
 
 3. Occupation Insights: Discover the most common occupations among males and females based on location. 
 
 4. Earnings at the Peak: Explore the highest-paid occupations for both males and females, coupled with their respective locations. This data paints a vivid picture of earning potential across genders.
-
-Unveil a world of insights as you embark on a gender-based exploration of user data. Whether you're conducting sociological research, labor market analysis, or simply curious about the disparities and similarities between males and females, this script provides the analytical tools you need.
-
-Get started today and gain a fresh perspective of gender-based data analysis. 
 
 ## Features
 #### Participant Data Collection
