@@ -42,13 +42,12 @@ The script collects the following information from participants:
   
 #### Data Analysis Made Easy
 With a simple menu option, the analyst can instantly access insightful data analysis, including gender distribution, average age, income statistics, most common occupations, and highest-paid occupations for both males and females.
+![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/20bfe092-70da-4e76-bd9b-c68462555747)
 
-#### User-Friendly Interaction
-The intuitive user menu provides a hassle-free experience, allowing you to add new participants, dive into data analysis, or exit the program—all at your fingertips.
+### Testing
 
-#### Error Handling
-The script includes robust error handling to address exceptions that may occur during Google Sheets integration or data manipulation, ensuring a smooth and reliable user experience.
-After entering their data, participants are presented with a summary of their inputs and asked to confirm. This confirmation step helps avoid mistakes and ensures accurate data entry.
+DONT FORGET
+
 
 ### Credits
 
