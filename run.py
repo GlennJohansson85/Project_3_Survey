@@ -13,11 +13,12 @@ SCOPE = [
 
 CREDS_PATH = "creds.json"
 
+
 def authorize_gspread():
     """
     Authorize the Google Sheets API using credentials.
     Returns:
-        Authorized gspread client or None on error. 
+        Authorized gspread client or None on error.
     """
     try:
         creds = Credentials.from_service_account_file(CREDS_PATH, scopes=SCOPE)
@@ -25,7 +26,8 @@ def authorize_gspread():
     except Exception as e:
         print("Error authorizing gspread:", e)
         return None
-    
+
+
 def open_google_sheet(client, sheet_title):
     """
     Open a Google Sheet by title.
@@ -41,6 +43,7 @@ def open_google_sheet(client, sheet_title):
         print(f"Spreadsheet '{sheet_title}' not found.")
         return None
 
+
 def load_valid_locations():
     """
     Load valid locations from an XLSX file.
@@ -55,6 +58,7 @@ def load_valid_locations():
         print(f"Error loading valid locations from XLSX file: {e}")
     return valid_locations
 
+
 def calculate_summary(user_data):
     """
     Calculate summary statistics from user data.
@@ -63,46 +67,46 @@ def calculate_summary(user_data):
     Returns:
         A dictionary with summary statistics.
     """
-    
-    # Initialize variables for data aggregation.
+
+    # Initialize variables for data aggregation
     num_males = 0
     num_females = 0
-    
-    # Total age and count for males and females.
+
+    # Male/Female: Total age and count
     total_age_males = 0
     valid_age_count_males = 0
     total_age_females = 0
     valid_age_count_females = 0
-    
-    # Lists to store occupations for males and females.
+
+    # Male/female: Store occupations
     occupation_males = []
     occupation_females = []
-    
-    # Variabls to track the highest paid occupation and income for males and females.
+
+    # Male/Female: highest paid occupation, income, location
     highest_paid_occupation_males = ""
     highest_paid_income_males = 0
     highest_paid_occupation_females = ""
     highest_paid_income_females = 0
     highest_paid_location_male = ""
     highest_paid_location_female = ""
-    
-    # Total income and count for males and females.
+
+    # Male/Female: Total income and count
     total_income_males = 0
     valid_income_count_males = 0
     total_income_females = 0
     valid_income_count_females = 0
-    
+
     # Iterate through user data to aggregate statistics.
     for user in user_data:
         gender = user.get("GENDER", "").strip().lower()
         income_str = user.get("INCOME")
         location = user.get("LOCATION", "").strip().upper()
-        
+
         if gender == "male":
             num_males += 1
             age_str = user.get("AGE")
             occupation = user.get("OCCUPATION", "").strip()
-            
+
             if age_str:
                 try:
                     age = int(age_str)
@@ -110,10 +114,10 @@ def calculate_summary(user_data):
                     valid_age_count_males += 1
                 except ValueError:
                     pass
-                
+
                 if occupation:
                     occupation_males.append(occupation)
-                    
+
                 if income_str:
                     try:
                         income = int(income_str)
@@ -125,23 +129,23 @@ def calculate_summary(user_data):
                             highest_paid_location_male = location
                     except ValueError:
                         pass
-                    
-        elif gender == "female":
-                num_females += 1
-                age_str = user.get("AGE")
-                occupation = user.get("OCCUPATION", "").strip()
 
-                if age_str:
-                    try:
-                        age = int(age_str)
-                        total_age_females += age
-                        valid_age_count_females += 1
-                    except ValueError:
-                        pass
-                    
+        elif gender == "female":
+            num_females += 1
+            age_str = user.get("AGE")
+            occupation = user.get("OCCUPATION", "").strip()
+
+            if age_str:
+                try:
+                    age = int(age_str)
+                    total_age_females += age
+                    valid_age_count_females += 1
+                except ValueError:
+                    pass
+
                 if occupation:
                     occupation_females.append(occupation)
-                    
+
                 if income_str:
                     try:
                         income = int(income_str)
@@ -153,23 +157,46 @@ def calculate_summary(user_data):
                             highest_paid_location_female = location
                     except ValueError:
                         pass
-                    
-    # Calculate average age for males and females
-    average_age_males = int(total_age_males / valid_age_count_males) if valid_age_count_males > 0 else 0
-    average_age_females = int(total_age_females / valid_age_count_females) if valid_age_count_females > 0 else 0
-    
-    # Calculate average income for males and females
-    average_income_males = int(total_income_males / valid_income_count_males) if valid_income_count_males > 0 else 0
-    average_income_females = int(total_income_females / valid_income_count_females) if valid_income_count_females > 0 else 0
-    
-    # Determine the most common occupations for males and females
+
+    # Males/Females: Calculate average age
+    average_age_males = (
+        int(total_age_males / valid_age_count_males)
+        if valid_age_count_males > 0
+        else 0
+    )
+
+    average_age_females = (
+        int(total_age_females / valid_age_count_females)
+        if valid_age_count_females > 0
+        else 0
+    )
+
+    # Males/Females: Calculate average income
+    average_income_males = (
+        int(total_income_males / valid_income_count_males)
+        if valid_income_count_males > 0
+        else 0
+    )
+
+    average_income_females = (
+        int(total_income_females / valid_income_count_females)
+        if valid_income_count_females > 0
+        else 0
+    )
+
+    # Males/Females: Determine the most common occupation
     most_common_occupation_males = (
-        Counter(occupation_males).most_common(1)[0][0].upper() if occupation_males else ""        
+        Counter(occupation_males).most_common(1)[0][0].upper()
+        if occupation_males
+        else ""
     )
+
     most_common_occupation_females = (
-        Counter(occupation_females).most_common(1)[0][0].upper() if occupation_females else ""
+        Counter(occupation_females).most_common(1)[0][0].upper()
+        if occupation_females
+        else ""
     )
-    
+
     # Create a summary dictionary with statistics
     summary = {
         "NUMBER OF MALES": num_males,
@@ -180,12 +207,17 @@ def calculate_summary(user_data):
         "AVERAGE INCOME FOR FEMALES": average_income_females,
         "MOST COMMON OCCUPATION FOR MALES": most_common_occupation_males,
         "MOST COMMON OCCUPATION FOR FEMALES": most_common_occupation_females,
-        "HIGHEST PAID OCCUPATION FOR MALES": f"{highest_paid_occupation_males} ({highest_paid_location_male})",
-        "HIGHEST PAID OCCUPATION FOR FEMALES": f"{highest_paid_occupation_females} ({highest_paid_location_female})",    
+        "HIGHEST PAID OCCUPATION FOR MALES":
+        f"{highest_paid_occupation_males}"
+        f"({highest_paid_location_male})"
+        "HIGHEST PAID OCCUPATION FOR FEMALES":
+        f"{highest_paid_occupation_females}"
+        f"({highest_paid_location_female})"
     }
-    
+
     return summary
-    
+
+
 def display_insights(summary):
     """
     Display summary statistics in a user-friendly format.
@@ -196,7 +228,7 @@ def display_insights(summary):
     max_value_length = max(len(str(value)) for value in summary.values())
     # Create a line of the same width
     line = '-' * (max_key_length + max_value_length + 20)
-    
+
     print("-------------- INSIGHTS --------------")
     for key, value in summary.items():
         formatted_key = f"{key.ljust(max_key_length)}"
@@ -206,10 +238,11 @@ def display_insights(summary):
         else:
             formatted_value = f"{value.upper() if isinstance(value, str) else value}"
         print(f"{formatted_key} : {formatted_value}")
-        
+
     print("--------------------------------------")
-    
-def get_valid_NAME():   
+
+
+def get_valid_NAME():
     """
     Get a valid name input from user.
     Returns:
@@ -222,7 +255,8 @@ def get_valid_NAME():
             return name.upper()
         else:
             print("Please use only letter and ensure the name is at lease 2 characters long.")
-    
+
+
 def get_valid_AGE():
     """
     Get a valid age input from user.
@@ -235,7 +269,8 @@ def get_valid_AGE():
             return int(age)
         else:
             print("Please enter a valid age between 14 and 85.")
-            
+
+
 def get_valid_GENDER():
     """
     Get a valid gender input from user.
@@ -248,7 +283,8 @@ def get_valid_GENDER():
             return gender
         else:
             print("Pleaser enter either 'male' or 'female'.")
-            
+
+
 def get_valid_OCCUPATION():
     """
     Get a valid occupation input from user.
@@ -261,7 +297,8 @@ def get_valid_OCCUPATION():
             return occupation.upper()
         else:
             print("Please use only letters and ensure the name of the occupation is at least 2 characters long.")
-            
+
+
 def get_valid_INCOME():
     """
     Get a valid income input from user.
@@ -274,30 +311,32 @@ def get_valid_INCOME():
             return int(income)
         else:
             print("Please enter a valid income with 5 or 6 digits.")
-            
+
+
 def get_valid_LOCATION(valid_locations):
     """
     Get a valid location input from user.
     Args:
         valid_locations: List of valid locations from "uscities.xlsx".
     Returns:
-        Valid user location: 
+        Valid user location:
     (Ensures case-insensitive matching for locations by converting user input and valid locations to uppercase.)
     """
-    while True: 
+    while True:
         location = input("In which city do you work: ").strip().upper()
         if location in valid_locations:
             return location
         else:
             print("Where in the US is your work located? In which city?")
-            
+
+
 def get_user_info(valid_locations):
     """
     Get user information from user.
     Args:
         valid_locations: List of valid locations.
     Returns:
-        A summary containing user information. 
+        A summary containing user information.
     """
     user_info = {
         "NAME": get_valid_NAME(),
@@ -307,24 +346,25 @@ def get_user_info(valid_locations):
         "INCOME": get_valid_INCOME(),
         "LOCATION": get_valid_LOCATION(valid_locations),
     }
-    
+
     return user_info
-    
+
+
 def show_summary_and_confirm(user_info):
     """
     Display user information, confirm = update "survey"(Google Sheet)
     Args:
-        user_info: Summary containing user input. 
-    Returns: 
+        user_info: Summary containing user input.
+    Returns:
         True if user confirms, False outherwise.
     """
     max_key_length = max(len(key) for key in user_info.keys())
     max_value_length = max(len(str(value)) for value in user_info.values())
-    
+
     # Display user input summary
     print("-" * (max_key_length + max_value_length + 20))
     print("-------- SUMMARY --------")
-    
+
     for key, value in user_info.items():
         if key == "GENDER":
             formatted_key = key.upper()
@@ -338,9 +378,9 @@ def show_summary_and_confirm(user_info):
             formatted_value = value
             
         print(f"{formatted_key.ljust(max_key_length).upper()} : {formatted_value}")
-        
+
     print("-" * (max_key_length + max_value_length + 20))
-    
+
     while True:
         confirmation = input("Are you satisfied with your answers? (yes/no): ").strip().lower()
         if confirmation == "yes":
@@ -349,10 +389,10 @@ def show_summary_and_confirm(user_info):
                 sheet_title = "survey"
                 sheet = open_google_sheet(client, sheet_title)
                 worksheet = sheet.get_worksheet(0)
-                
+
                 user_values = list(user_info.values())
                 worksheet.insert_row(user_values, 2)
-                
+
                 print(f"User input added to the survey '{sheet_title}'.")
             except gspread.exceptions.WorksheetNotFound as e:
                 print("Worksheet not found:", e)
@@ -364,12 +404,13 @@ def show_summary_and_confirm(user_info):
             break
         else:
             print("Invalid input. Please enter 'yes' or 'no'.")
-    
+
+            
 def implement_data():
     valid_locations = load_valid_locations()
     user_data = []
     """
-    Main function to interact with users and updateGoogle Sheet. 
+    Main function to interact with users and updateGoogle Sheet.
     """
     while True:
         choice = input("Press 1 = New Participant, Press 2 = Analyst, Press 3 = Exit:").strip()
@@ -387,7 +428,7 @@ def implement_data():
                 except gspread.exceptions.WorksheetNotFound as e:
                     print("Worksheet not found:", e)
                     continue
-                    
+
                 records = worksheet.get_all_records()
                 if records:
                     summary = calculate_summary(records)
@@ -399,23 +440,23 @@ def implement_data():
             break
         else:
             print("Invalid input. Please enter 1, 2 or 3.")
-    
+
     if user_data:
         try:
             client = authorize_gspread()
             sheet_title = "survey"
             sheet = open_google_sheet(client, sheet_title)
             worksheet = sheet.get_worksheet(0)
-            
+
             for i, user in enumerate(user_data, start=2):
                 user_values = list(user.values())
                 worksheet.insert_row(user_values, i)
-                
+
             print(f"Survey data added to Google Sheet '{sheet_title}'.")
         except gspread.exceptions.WorksheetNotFound as e:
             print("Worksheet not found:", e)
         except Exception as e:
             print("An error occured while updating Google Sheet:", e)
-            
+
 if __name__ == "__main__":
     implement_data()
