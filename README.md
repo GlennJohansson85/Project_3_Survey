@@ -16,7 +16,7 @@ Unveil a world of insights as you embark on a gender-based exploration of user d
 Get started today and gain a fresh perspective of gender-based data analysis. 
 
 ## Features
-### Participant Data Collection
+#### Participant Data Collection
 The script collects the following information from participants:
 * Name: The participant´s name (validated for non-empty and non-numeric characters).
 * Age: The participant´s age (validated to be between 14 and 85 years).
@@ -25,22 +25,27 @@ The script collects the following information from participants:
 * Income: The participant´s yearly income (validated for 5 or 6-digit numeric values).
 * Location: The participant´s work location is validated against a list of valid locations("uscities.xlsx") in a case-insensitive manner. The validated location is stored in a
   uppercase format for consistency.
+* ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/a360022b-aff0-415e-8d1f-bb0db6c4bb07)
 
-### Participant Input Validation
+#### Participant Input Validation
 * Participant inputs are validated to ensure data integrity and correctness. Invalid inputs prompt the participant to re-enter the information.
-* Inputs are case-insensitive, allowing the participant to write in both upper- or lowercase aswell as using spaces or not when entering location (New York/newyork).
+* Inputs are case-insensitive, allowing the participant to write in both upper- or lowercase.
 
-### Participant Input Confirmation
-* After entering their data, participants are presented with a summary of their inputs and asked to confirm, restart or exit the program. This way we avoid mistakes and ensures
-  accurate data entry.
 
-### Google Sheet Integration
-* The script automates data storage by updating a dedicated Google Sheet named "survey" in real-time. The collected data is organized for further analysis and reference.
+#### Participant Input Confirmation
+* After all questions has been answered, participants are presented with a summary of their inputs and asked if they are satisfied with their input.
+  ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/e5027dcc-94f3-4279-81d3-c31ba5bb5833)
+* If yes = The script updates the dedicated Google Sheet ("survey") in real-time.
+  ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/c27b3b65-be8c-4cb2-a745-fb8afa22c5ee)
 
-### Data Analysis Made Easy
+* If no = The script resets, without adding any data to the Google Sheet, making the input more accurate incase of typos.
+  ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/ef7acf22-b62b-4582-8479-48eaee0dee72)
+ 
+  
+#### Data Analysis Made Easy
 With a simple menu option, the analyst can instantly access insightful data analysis, including gender distribution, average age, income statistics, most common occupations, and highest-paid occupations for both males and females.
 
-### User-Friendly Interaction
+#### User-Friendly Interaction
 The intuitive user menu provides a hassle-free experience, allowing you to add new participants, dive into data analysis, or exit the program—all at your fingertips.
 
 #### Error Handling
