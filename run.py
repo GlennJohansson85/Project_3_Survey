@@ -236,7 +236,10 @@ def display_insights(summary):
             # Remove ".00" and add "$" and ","
             formatted_value = f"${value:,.0f}"
         else:
-            formatted_value = f"{value.upper() if isinstance(value, str) else value}"
+            formatted_value = (
+                f"{value.upper() if isinstance(value, str) else value}"
+            )
+
         print(f"{formatted_key} : {formatted_value}")
 
     print("--------------------------------------")
@@ -250,11 +253,11 @@ def get_valid_NAME():
     """
     while True:
         name = input("Your name: ")
-        # Convert name to uppercase ensuring consistency and make comparisons case-insensitive.
+        # Ensure case-insensitive consistency
         if len(name) >= 2 and not any(char.isdigit() for char in name):
             return name.upper()
         else:
-            print("Please use only letter and ensure the name is at lease 2 characters long.")
+            print("Use only letters and ensure a minimum of two characters")
 
 
 def get_valid_AGE():
@@ -293,10 +296,11 @@ def get_valid_OCCUPATION():
     """
     while True:
         occupation = input("Your occupation: ")
-        if len(occupation) >= 2 and not any(char.isdigit() for char in occupation):
+        if (len(occupation) >= 2 and
+                not any(char.isdigit() for char in occupation)):
             return occupation.upper()
         else:
-            print("Please use only letters and ensure the name of the occupation is at least 2 characters long.")
+            print("Use only letters and ensure a minimum of two characters")
 
 
 def get_valid_INCOME():
@@ -307,7 +311,7 @@ def get_valid_INCOME():
     """
     while True:
         income = input("Your yearly income (5 or 6 digits): ")
-        if income.isdigit() and (len(income) == 5 or len(income) ==6):
+        if income.isdigit() and (len(income) == 5 or len(income) == 6):
             return int(income)
         else:
             print("Please enter a valid income with 5 or 6 digits.")
@@ -320,7 +324,7 @@ def get_valid_LOCATION(valid_locations):
         valid_locations: List of valid locations from "uscities.xlsx".
     Returns:
         Valid user location:
-    (Ensures case-insensitive matching for locations by converting user input and valid locations to uppercase.)
+    (Enforces case-insensitive matching)
     """
     while True:
         location = input("In which city do you work: ").strip().upper()
@@ -376,13 +380,18 @@ def show_summary_and_confirm(user_info):
         else:
             formatted_key = key.upper()
             formatted_value = value
-            
-        print(f"{formatted_key.ljust(max_key_length).upper()} : {formatted_value}")
+
+        print(
+            f"{formatted_key.ljust(max_key_length).upper()} : "
+            f"{formatted_value}"
+        )
 
     print("-" * (max_key_length + max_value_length + 20))
 
     while True:
-        confirmation = input("Are you satisfied with your answers? (yes/no): ").strip().lower()
+        confirmation =
+        input("Are you satisfied with your answers? (yes/no): ").strip() \
+            lower().
         if confirmation == "yes":
             try:
                 client = authorize_gspread()
@@ -405,7 +414,7 @@ def show_summary_and_confirm(user_info):
         else:
             print("Invalid input. Please enter 'yes' or 'no'.")
 
-            
+
 def implement_data():
     valid_locations = load_valid_locations()
     user_data = []
@@ -413,7 +422,7 @@ def implement_data():
     Main function to interact with users and updateGoogle Sheet.
     """
     while True:
-        choice = input("Press 1 = New Participant, Press 2 = Analyst, Press 3 = Exit:").strip()
+        choice = input("1 = New Participant, 2 = Analyst, 3 = Exit:").strip()
         if choice == '1':
             user_info = get_user_info(valid_locations)
             if show_summary_and_confirm(user_info):
@@ -457,6 +466,7 @@ def implement_data():
             print("Worksheet not found:", e)
         except Exception as e:
             print("An error occured while updating Google Sheet:", e)
+
 
 if __name__ == "__main__":
     implement_data()
