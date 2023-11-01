@@ -1,4 +1,4 @@
-# Imported libraris
+# Imported libraries
 import gspread
 from google.oauth2.service_account import Credentials
 import pandas as pd
@@ -207,12 +207,14 @@ def calculate_summary(user_data):
         "AVERAGE INCOME FOR FEMALES": average_income_females,
         "MOST COMMON OCCUPATION FOR MALES": most_common_occupation_males,
         "MOST COMMON OCCUPATION FOR FEMALES": most_common_occupation_females,
-        "HIGHEST PAID OCCUPATION FOR MALES":
-        f"{highest_paid_occupation_males}"
-        f"({highest_paid_location_male})"
-        "HIGHEST PAID OCCUPATION FOR FEMALES":
-        f"{highest_paid_occupation_females}"
-        f"({highest_paid_location_female})"
+        "HIGHEST PAID OCCUPATION FOR MALES": (
+            f"{highest_paid_occupation_males}",
+            f"{highest_paid_location_male}"
+        ),
+        "HIGHEST PAID OCCUPATION FOR FEMALES": (
+            f"{highest_paid_occupation_females}",
+            f"{highest_paid_location_female}"
+        )
     }
 
     return summary
@@ -231,16 +233,20 @@ def display_insights(summary):
 
     print("-------------- INSIGHTS --------------")
     for key, value in summary.items():
-        formatted_key = f"{key.ljust(max_key_length)}"
+        formatted_key = f"{key.ljust(max_key_length)} :"
+
         if key.startswith("AVERAGE INCOME"):
             # Remove ".00" and add "$" and ","
             formatted_value = f"${value:,.0f}"
+        elif key .startswith("HIGHEST PAID OCCUPATION"):
+            occupation, location = value
+            formatted_value = f"{occupation.upper()}, {location}"
         else:
             formatted_value = (
                 f"{value.upper() if isinstance(value, str) else value}"
             )
 
-        print(f"{formatted_key} : {formatted_value}")
+        print(f"{formatted_key} {formatted_value}")
 
     print("--------------------------------------")
 
@@ -389,9 +395,12 @@ def show_summary_and_confirm(user_info):
     print("-" * (max_key_length + max_value_length + 20))
 
     while True:
-        confirmation =
-        input("Are you satisfied with your answers? (yes/no): ").strip() \
-            lower().
+        confirmation = (
+            input("Are you satisfied with your answers? (yes/no): ")
+            .strip()
+            .lower()
+        )
+
         if confirmation == "yes":
             try:
                 client = authorize_gspread()
