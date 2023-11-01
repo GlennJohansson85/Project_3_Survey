@@ -34,6 +34,7 @@ The script collects the following information from participants:
   ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/e5027dcc-94f3-4279-81d3-c31ba5bb5833)
 * If yes = The script updates the dedicated Google Sheet ("survey") in real-time.
   ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/c27b3b65-be8c-4cb2-a745-fb8afa22c5ee)
+  ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/ff333301-9ccd-4396-be54-8400b19f38ec)
 
 * If no = The script resets, without adding any data to the Google Sheet, making the input more accurate incase of typos.
   ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/ef7acf22-b62b-4582-8479-48eaee0dee72)
