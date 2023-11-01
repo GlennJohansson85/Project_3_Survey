@@ -22,12 +22,11 @@ The script collects the following information from participants:
 * Income: The participant´s yearly income (validated for 5 or 6-digit numeric values).
 * Location: The participant´s work location is validated against a list of valid locations("uscities.xlsx") in a case-insensitive manner. The validated location is stored in a
   uppercase format for consistency.
-* ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/a360022b-aff0-415e-8d1f-bb0db6c4bb07)
+  ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/a360022b-aff0-415e-8d1f-bb0db6c4bb07)
 
 #### Participant Input Validation
 * Participant inputs are validated to ensure data integrity and correctness. Invalid inputs prompt the participant to re-enter the information.
 * Inputs are case-insensitive, allowing the participant to write in both upper- or lowercase.
-
 
 #### Participant Input Confirmation
 * After participants have completed all the questions, they are presented with a summary of their inputs. 
@@ -41,8 +40,9 @@ The script collects the following information from participants:
  
   
 #### Data Analysis Made Easy
-With a simple menu option, the analyst can instantly access insightful data analysis, including gender distribution, average age, income statistics, most common occupations, and highest-paid occupations for both males and females.
-![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/20bfe092-70da-4e76-bd9b-c68462555747)
+* With a simple menu option, the analyst can instantly access insightful data analysis, including gender distribution, average age, income statistics,
+  most common occupations, andhighest-paid occupations for both males and females.
+  ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/20bfe092-70da-4e76-bd9b-c68462555747)
 
 ### Testing
 * CI Python Linter
