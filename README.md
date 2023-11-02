@@ -73,3 +73,6 @@ The script collects the following information from participants:
 * https://www.geeksforgeeks.org
 * https://learnpython.org
 * https://www.udemy.com
+
+## Developer: 
+Glenn Johansson
