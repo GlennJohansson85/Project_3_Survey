@@ -14,8 +14,10 @@ The script collects the following information from participants:
   ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/a360022b-aff0-415e-8d1f-bb0db6c4bb07)
 
 #### Participant Input Validation
-* Participant inputs are validated to ensure data integrity and correctness. Invalid inputs prompt the participant to re-enter the information.
+* Participant inputs are validated to ensure data integrity and correctness. Invalid inputs prompt the participant to re-enter the information.<br>
+  ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/87a4c43b-9bec-45eb-a711-c7dff2447b0c)
 * Inputs are case-insensitive, allowing the participant to write in both upper- or lowercase.
+  ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/201d19d7-fc8e-4b17-ae6c-7c80fd81b90e)
 
 #### Participant Input Confirmation
 * Once participants have answered all the questions, they are presented with a summary of their provided information.
