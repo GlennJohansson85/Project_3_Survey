@@ -1,7 +1,7 @@
 # p3-survey
 
 This Python project is built to systematically gather user-provided information and employ the data to conduct a comparative study of annual income between male and female individuals. The focus of this analysis narrows down to individuals sharing the same occupation and residing within the United States.
-The participants partaking in the survey are fictional.
+The participants partaking in the survey are purely fictional.
 
 Key Focus:
 1. Gender-Based Income Comparison: At the core of this project lies a analysis of yearly income disparities between males and females. Through the collection and examination of user data, the script presents the differences between males and females income within the same occupation or locatation.  
