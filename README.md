@@ -39,6 +39,22 @@ The script collects the following information from participants:
   ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/f13e9cbc-6a30-4fcf-802e-b7bd057a09a4)
 * The script has undergone extensive testing in the terminal to ensure a user-friendly, bug-free experience.
 
+
+### How to Try Out the App on Heroku
+1. Access the App:
+   * Open a web browser and visit the Heroku app's URL (  https://p3-survey-bdd7efb60ced.herokuapp.com/).
+
+2. Interact with the App:
+   * Once on the app's webpage, follow the provided instructions for interacting with the Python script 
+
+3. Follow Usage Guidelines:
+   * Pay attention to any on-screen usage instructions or input requirements.
+
+### Links:
+* Github Repository: https://github.com/GlennJohansson85/p3-survey.git
+* Heroku Dashboard: https://dashboard.heroku.com/apps/p3-survey
+* Heroku app: https://p3-survey-bdd7efb60ced.herokuapp.com/
+
 ### Credits
 #### Code Institute:
 * Comparative Programming Languages
