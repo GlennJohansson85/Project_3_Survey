@@ -16,7 +16,7 @@ The script collects the following information from participants:
 #### Participant Input Validation
 * Participant inputs are validated to ensure data integrity and correctness. Invalid inputs prompt the participant to re-enter the information.<br>
   ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/87a4c43b-9bec-45eb-a711-c7dff2447b0c)
-* Inputs are case-insensitive, allowing the participant to write in both upper- or lowercase.
+* Inputs are case-insensitive, allowing the participant to write in both upper- or lowercase.<br>
   ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/201d19d7-fc8e-4b17-ae6c-7c80fd81b90e)
 
 #### Participant Input Confirmation
