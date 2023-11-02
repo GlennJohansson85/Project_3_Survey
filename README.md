@@ -39,6 +39,13 @@ The script collects the following information from participants:
   ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/f13e9cbc-6a30-4fcf-802e-b7bd057a09a4)
 * The script has undergone extensive testing in the terminal to ensure a user-friendly, bug-free experience.
 
+### BUGS
+* Resolved Interaction Problems:
+  Initially, there were issues with Python interacting with Google Spreadsheets, leading to updates in the wrong columns and inconsistent casing. These issues have been successfully resolved.
+
+* PEP8 Compliance Challenges:
+  Meeting PEP8 guidelines, especially regarding code length, posed challenges. Breaking down long code into smaller segments sometimes caused malfunctions.
+  The time allocated for addressing these issues was underestimated.
 
 ### How to Try Out the App on Heroku
 1. Access the App:
