@@ -20,7 +20,7 @@ The script collects the following information from participants:
   ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/201d19d7-fc8e-4b17-ae6c-7c80fd81b90e)
 
 #### Participant Input Confirmation
-* Once participants have answered all the questions, they are presented with a summary of their provided information.
+* Once participants have answered all the questions, they are presented with a summary of their provided information.<br>
   ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/e5027dcc-94f3-4279-81d3-c31ba5bb5833)
 * If yes = The script updates the dedicated Google Sheet ("survey") in real-time.
   ![image](https://github.com/GlennJohansson85/p3-survey/assets/139962883/c27b3b65-be8c-4cb2-a745-fb8afa22c5ee)
