@@ -1,6 +1,5 @@
-# p3-survey
+# Project 3 Survey
 This project aims to shed light on income differences between males and females throughout the United States. People participating in the survey fall within the age range of 14 to 85 years. This involves examining the number of male and female participants, their average age, income, highest income, and work locations. Analysts can readily access this data in the form of insights with a simple keystroke.
-
 
 ## Features
 #### Participant Data Collection
